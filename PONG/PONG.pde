@@ -8,6 +8,9 @@ int D=20;
 int size1 = 1200;
 int size2 = 800;
 
+int thresholdMin=345;
+int thresholdMax=545;
+
 int posX=size1/2;
 int posY=size2/2;
 
@@ -276,12 +279,12 @@ void serialEvent(Serial cPort){
 //    println(comPortString);
     val = int(comPortString);
     println(val);
-    if(val<=345){
+    if(val<=thresholdMin){
       player2Y=0;
-    }else if(val>=545){
+    }else if(val>=thresholdMax){
       player2Y=height-alto;
     }else{
-      player2Y = (val-345)*4;
+      player2Y = (val-thresholdMin)*(height/(thresholdMax-thresholdMin));
     }
    }
    count++;
